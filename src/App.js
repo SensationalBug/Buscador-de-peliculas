@@ -7,11 +7,19 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
-  state = { results: [] };
+  state = { userSearch: false, results: [] };
 
   _handleResults = (results) => {
-    this.setState({ results });
+    this.setState({ results, userSearch: true });
   };
+
+  _renderResults() {
+    return this.state.results.length === 0 ? (
+      <p>Sorry! 😒 file not found</p>
+    ) : (
+      <MoviesList movies={this.state.results} />
+    );
+  }
 
   render() {
     return (
@@ -19,10 +27,10 @@ class App extends Component {
         <Title>Buscador de Peliculas</Title>
         <div className="container">
           <SearchForm onResults={this._handleResults} />
-          {this.state.results.length === 0 ? (
-            <p>Busca una pelicula</p>
+          {this.state.userSearch ? (
+            this._renderResults()
           ) : (
-            <MoviesList movies={this.state.results} />
+            <small>Busca una película con el form de encima</small>
           )}
         </div>
       </div>
