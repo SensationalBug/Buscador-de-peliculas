@@ -18,30 +18,33 @@ export class SearchForm extends Component {
     fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${inputMovie}`)
       .then((res) => res.json())
       .then((data) => {
-        const { Search = [], totalResults = "0" } = data;
-        console.log(Search, totalResults);
+        const { Search = [] } = data;
         this.props.onResults(Search);
       });
   };
 
   render() {
     return (
-      <form onSubmit={this._handleSubmit}>
-        <div className="input-group buscar mb-3">
-          <input
-            aria-describedby="searchButton"
-            className="form-control"
-            placeholder=""
-            onChange={this._handleChange}
-            type="text"
-          />
-          <div className="input-group-append">
-            <button className="btn btn-outline-dark" id="searchButton">
-              Buscar
-            </button>
-          </div>
+      <div className="row justify-content-center">
+        <div className="col-md-4 col">
+          <form onSubmit={this._handleSubmit}>
+            <div className="input-group buscar my-3">
+              <input
+                aria-describedby="searchButton"
+                className="form-control"
+                placeholder=""
+                onChange={this._handleChange}
+                type="text"
+              />
+              <div className="input-group-append">
+                <button className="btn btn-info" id="searchButton">
+                  Buscar
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     );
   }
 }
