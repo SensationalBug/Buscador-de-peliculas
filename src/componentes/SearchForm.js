@@ -37,7 +37,7 @@ export class SearchForm extends Component {
                 type="text"
               />
               <div className="input-group-append">
-                <button className="btn btn-info" id="searchButton">
+                <button className="btn btn-success" id="searchButton">
                   Buscar
                 </button>
               </div>
